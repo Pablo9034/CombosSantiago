@@ -1,11 +1,115 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import { Picture } from 'astro:assets';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import { getCombos } from '@scripts';
+
+import Layout from '@layouts/Layout.astro';
+import Navbar from '@components/Navbar.astro';
+
+import HeaderPicture from '@assets/header-picture.png';
+import LeavesRight from '@assets/leaves-right.svg';
+import LeavesLeft from '@assets/leaves-left.svg';
+import Down from '@assets/down.svg';
+import Certificate from '@assets/certificate.svg';
+import Meat from '@assets/meat.svg';
+import Package from '@assets/package.svg';
+import Delivery from '@assets/delivery.svg';
+import Tag from '@assets/tag.svg';
+import DNI from '@assets/DNI.jpg';
+import Whatsapp from '@assets/whatsapp.svg';
+
+const services = [
+    { icon: Certificate, label: 'Calidad Certificada' },
+    { icon: Meat, label: 'Corte Profecional' },
+    { icon: Package, label: 'Empaquetado' },
+    { icon: Delivery, label: 'Servicio de Entrega' },
+];
+
+const combos = getCombos();
 ---
 
 <Layout>
-	<Welcome />
+	<header id="header" class="w-full h-screen relative flex flex-col justify-center items-center gap-10">
+		<div class="relative w-full h-80 flex items-center justify-center">
+        	<Picture src={ HeaderPicture } formats={[ "avif", "webp" ]} alt="Logotipo del sitio."  class="absolute w-80 z-10 top-7 left-1/2 -translate-x-1/2"/>
+
+			<h1 class="font-[Barlow] text-6xl z-20">
+				<span class="block text-center">COMBOS</span>
+				<span class="block text-center text-black/50 text-stroke">SANTIAGO</span>
+			</h1>
+
+			<div class="size-80 absolute bg-red-900 rounded-full blur-xl"></div>
+			<LeavesRight class="absolute right-3" />
+			<LeavesLeft class="absolute left-3" />
+    	</div>
+
+		<Navbar client:load />
+
+		<Down class="animate-bounce absolute bottom-20" />
+	</header>
+
+	<section id="products" class="py-16">
+		<h2 class="pb-10 text-center font-[Barlow] text-4xl">Productos</h2>
+
+		<ul class="mb-10 py-5 flex flex-wrap justify-center gap-3">{
+    		services.map(({ icon: Icon, label })=> (
+    		    <li class="w-44 bg-red-900 rounded-md">
+    		        <Icon stroke-width={ 1 } class="size-16 mx-auto"/>
+    		        <span class="block text-center">{ label }</span>
+    		    </li>
+    		))
+    	}</ul>
+
+		<div class="flex flex-col items-center">{
+			combos.map(({ title, price, content })=> (
+				<div class="relative w-80 pt-5 rounded-xl shadow-md shadow-red-900/80 p-2 bg-red-900">
+					<span class="absolute right-0 top-0 rotate-12 text-3xl text-yellow-300">{ price } <Tag class="absolute -right-5"/></span>
+
+					<h3 class="mb-5 font-[Barlow] text-2xl text-center">{ title }</h3>
+
+					<ul class="px-3">
+						<li class="mb-5 flex justify-between border-b-2 border-white/50"><span>Cotenido</span> <span>Pesaje</span></li>
+        				{
+            				content.map(({ item, weight })=> (
+                				<li class="flex justify-between">
+                    				<span>{ item }</span>
+                    				<span>{ weight }</span>
+                				</li>
+            				))
+        				}
+    				</ul>
+					<a href="#" class="w-full mt-5 py-3 bg-linear-to-b from-green-700 to-green-900 rounded-2xl font-bold active:scale-95 transition-[scale] inline-flex gap-3 justify-center">Comprar</a>
+				</div>
+			))	
+		}</div>
+	</section>
+
+	<section id="process_delivery" class="py-16">
+		<h2 class="pb-10 text-center font-[Barlow] text-4xl">Proceso de Entrega</h2>
+
+		<div class="lg:grid lg:grid-cols-2 lg:gap-10 max-w-4xl mx-auto lg:items-center">
+            <div class="mb-10">
+                <Picture src={ DNI } alt="Imagen de un Carnet de Identidad Cubano" class="w-80 mx-auto rounded-2xl border-4 -rotate-3 shadow shadow-gray-500"/>
+            </div>
+    
+            <div class="px-3 lg:row-start-1 lg:row-end-2">
+                <p class="first-letter:pl-3 pb-5">Una vez realizado el pago, el cliente deberá enviar los siguientes datos para proceder con el despacho del paquete:</p>
+                <ul class="mb-5 pl-5 list-disc">
+                    <li>Dirección completa de entrega.</li>
+                    <li>Fotografía de la identificación oficial de la persona que recibirá el paquete.</li>
+                </ul>
+                <p class="first-letter:pl-3 pb-5">Con esta información, el paquete podrá ser entregado el mismo día, siempre que las condiciones logísticas lo permitan. En cualquier caso, el plazo máximo de entrega es de 72 horas a partir de la confirmación de los datos mencionados. Como comprobante de entrega, se tomará una fotografía en el momento en que el paquete sea recibido, la cual servirá como garantía de que la entrega se realizó correctamente.</p>
+            </div>
+        </div>
+	</section>
+
+	<footer class="pt-16">
+    	<h2 id="contacts" class="pb-5 font-[Barlow] text-3xl text-center">Contactanos</h2>
+    	<p class="text-center">Esperamos con ancias tu pedido.</p>
+    	<ul class="my-5">
+    	    <li class="w-full inline-flex justify-center items-center gap-3"><Whatsapp class="size-8"/> <span>+XX XXX-XXX-XXX</span></li>
+    	    <li class="w-full inline-flex justify-center items-center gap-3"><Whatsapp class="size-8"/> <span>+XX XXX-XXX-XXX</span></li>
+    	</ul>
+    	<p class="text-center">Creado por Pablo A.</p>
+</footer>
 </Layout>

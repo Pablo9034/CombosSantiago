@@ -1,0 +1,39 @@
+---
+const sections = [
+    { href: '#products', label: "Productos" },
+    { href: '#process_delivery', label: "Proceso de Entrega" },
+    { href: '#contacts', label: "Contactanos" }
+];
+---
+
+<nav id="nav" class="top-0 z-10 w-full backdrop-blur-md shadow-white">
+    <ul id="nav-ul" class="py-5 flex flex-col justify-center lg:flex-row items-center gap-5 lg:gap-10 text-xl font-bold fade-in-delay">
+        {
+            sections.map(({ href, label })=> (
+                <li class="text-center"><a href={ href }>{ label }</a></li>
+            ))
+        }
+    </ul>
+</nav>
+
+<script>
+    const $header = document.querySelector('#header') as HTMLElement;
+    const $nav = document.querySelector('#nav') as HTMLElement;
+    const $navlist = document.querySelector('#nav-ul') as HTMLElement;
+
+    const observer = new IntersectionObserver((entries, observer)=> {
+        if(!entries[0].isIntersecting) {
+            $nav.classList.add('fixed', 'bg-white/60', 'shadow');
+
+            $navlist.classList.remove('flex-col', 'text-xl');
+            $navlist.classList.add('text-black');
+        } else {
+            $nav.classList.remove('fixed', 'bg-white/60', 'shadow');
+
+            $navlist.classList.remove('text-black');
+            $navlist.classList.add('flex-col', 'text-xl');
+        }
+    }, { root: null, rootMargin: '0px', threshold: 0.5 });
+
+    observer.observe($header);
+</script>
