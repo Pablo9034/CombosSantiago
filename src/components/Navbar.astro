@@ -1,39 +1,57 @@
 ---
+import ShoppingBag from '@assets/shopping-bag.svg';
+import Delivery from '@assets/delivery.svg';
+import Phone from '@assets/phone.svg';
+
 const sections = [
-    { href: '#products', label: "Productos" },
-    { href: '#process_delivery', label: "Proceso de Entrega" },
-    { href: '#contacts', label: "Contactanos" }
+    { href: '#products', icon: ShoppingBag, label: "Productos" },
+    { href: '#process_delivery', icon: Delivery, label: "Entregas" },
+    { href: '#contacts', icon: Phone, label: "Contactanos" }
 ];
 ---
 
-<nav id="nav" class="top-0 z-10 w-full backdrop-blur-md shadow-white">
-    <ul id="nav-ul" class="py-5 flex flex-col justify-center lg:flex-row items-center gap-5 lg:gap-10 text-xl font-bold fade-in-delay">
+<nav id="nav" class="bottom-0 z-10 from-white/50 to-transparent w-full py-3">
+    <ul id="nav-ul" class="flex flex-col justify-center lg:flex-row items-center gap-5 lg:gap-10 text-xl font-bold fade-in-delay">
         {
-            sections.map(({ href, label })=> (
-                <li class="text-center"><a href={ href }>{ label }</a></li>
+            sections.map(({ href, icon: Icon , label })=> (
+                <li class="text-center">
+                    <a href={ href } class="inline-flex flex-col items-center">
+                        <div id="container" class="size-9 rounded-full items-center justify-center bg-white/50 backdrop-blur-xs hidden">
+                            <Icon />
+                        </div>
+                        <span>{ label }</span>
+                    </a>
+                </li>
             ))
         }
     </ul>
 </nav>
 
 <script>
-    const $header = document.querySelector('#header') as HTMLElement;
+    const $sections = [document.querySelector('header'), ...document.querySelectorAll('section'), document.querySelector('footer')] as Array<HTMLElement>;
     const $nav = document.querySelector('#nav') as HTMLElement;
     const $navlist = document.querySelector('#nav-ul') as HTMLElement;
+    const $container = [...document.querySelectorAll('#container')] as Array<HTMLElement>;
 
     const observer = new IntersectionObserver((entries, observer)=> {
         if(!entries[0].isIntersecting) {
-            $nav.classList.add('fixed', 'bg-white/60', 'shadow');
+            $nav.classList.add('fixed', 'bg-linear-to-t');
 
             $navlist.classList.remove('flex-col', 'text-xl');
-            $navlist.classList.add('text-black');
-        } else {
-            $nav.classList.remove('fixed', 'bg-white/60', 'shadow');
+            $navlist.classList.add('text-black', 'gap-8');
 
-            $navlist.classList.remove('text-black');
+            $container.forEach( el => el.classList.remove('hidden'));
+            $container.forEach( el => el.classList.add('flex'));
+        } else {
+            $nav.classList.remove('fixed', 'bg-linear-to-t');
+
+            $navlist.classList.remove('text-black', 'gap-8');
             $navlist.classList.add('flex-col', 'text-xl');
+
+            $container.forEach( el => el.classList.remove('flex'));
+            $container.forEach( el => el.classList.add('hidden'));
         }
     }, { root: null, rootMargin: '0px', threshold: 0.5 });
 
-    observer.observe($header);
+    observer.observe($sections[0])
 </script>

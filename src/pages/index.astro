@@ -29,7 +29,7 @@ const combos = getCombos();
 ---
 
 <Layout>
-	<header id="header" class="w-full h-screen relative flex flex-col justify-center items-center gap-10">
+	<header id="#header" class="w-full h-screen relative flex flex-col justify-center items-center gap-10">
 		<div class="relative w-full h-80 flex items-center justify-center">
         	<Picture src={ HeaderPicture } formats={[ "avif", "webp" ]} alt="Logotipo del sitio."  class="absolute w-80 z-10 top-7 left-1/2 -translate-x-1/2"/>
 
@@ -45,15 +45,17 @@ const combos = getCombos();
 
 		<Navbar client:load />
 
-		<Down class="animate-bounce absolute bottom-20" />
+		<a href="#products" class="animate-bounce absolute bottom-32">
+			<Down />
+		</a>
 	</header>
 
-	<section id="products" class="py-16">
+	<section id="products">
 		<h2 class="pb-10 text-center font-[Barlow] text-4xl">Productos</h2>
 
 		<ul class="mb-10 py-5 flex flex-wrap justify-center gap-3">{
     		services.map(({ icon: Icon, label })=> (
-    		    <li class="w-44 bg-red-900 rounded-md">
+    		    <li class="w-36 bg-red-900 rounded-md">
     		        <Icon stroke-width={ 1 } class="size-16 mx-auto"/>
     		        <span class="block text-center">{ label }</span>
     		    </li>
@@ -84,7 +86,7 @@ const combos = getCombos();
 		}</div>
 	</section>
 
-	<section id="process_delivery" class="py-16">
+	<section id="process_delivery">
 		<h2 class="pb-10 text-center font-[Barlow] text-4xl">Proceso de Entrega</h2>
 
 		<div class="lg:grid lg:grid-cols-2 lg:gap-10 max-w-4xl mx-auto lg:items-center">
@@ -103,13 +105,13 @@ const combos = getCombos();
         </div>
 	</section>
 
-	<footer class="pt-16">
-    	<h2 id="contacts" class="pb-5 font-[Barlow] text-3xl text-center">Contactanos</h2>
+	<footer id="contacts">
+    	<h2 class="pb-5 font-[Barlow] text-3xl text-center">Contactanos</h2>
     	<p class="text-center">Esperamos con ancias tu pedido.</p>
     	<ul class="my-5">
     	    <li class="w-full inline-flex justify-center items-center gap-3"><Whatsapp class="size-8"/> <span>+XX XXX-XXX-XXX</span></li>
     	    <li class="w-full inline-flex justify-center items-center gap-3"><Whatsapp class="size-8"/> <span>+XX XXX-XXX-XXX</span></li>
     	</ul>
     	<p class="text-center">Creado por Pablo A.</p>
-</footer>
+	</footer>
 </Layout>
