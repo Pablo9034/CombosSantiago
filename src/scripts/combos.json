@@ -1,5 +1,18 @@
 [
     {
+        "title": "Combo Sencillo",
+        "price": "R$ 567",
+        "content": [
+            {"item": "Paleta", "weight": "18lb"},
+            {"item": "Cuero para chicharrones", "weight": "5lb"},
+            {"item": "Bacom", "weight": "5lb"},
+            {"item": "Manteca de cerdo", "weight": "1L"},
+            {"item": "Frijoles negros", "weight": "1kg"},
+            {"item": "Arroz", "weight": "1kg"},
+            {"item": "Botella de vinagre", "weight": "1u"}
+        ]
+    },
+    {
         "title": "Combo Variado",
         "price": "R$ 900",
         "content": [

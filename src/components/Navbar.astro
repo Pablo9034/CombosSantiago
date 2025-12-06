@@ -10,8 +10,8 @@ const sections = [
 ];
 ---
 
-<nav id="nav" class="bottom-0 z-10 from-white/50 to-transparent w-full py-3">
-    <ul id="nav-ul" class="flex flex-col justify-center lg:flex-row items-center gap-5 lg:gap-10 text-xl font-bold fade-in-delay">
+<nav id="nav" class="bottom-0 lg:top-0 z-10 h-fit from-black to-transparent w-full py-3">
+    <ul id="nav-ul" class="flex flex-col justify-center items-center gap-5 lg:gap-10 text-xl font-bold">
         {
             sections.map(({ href, icon: Icon , label })=> (
                 <li class="text-center">
@@ -35,17 +35,17 @@ const sections = [
 
     const observer = new IntersectionObserver((entries, observer)=> {
         if(!entries[0].isIntersecting) {
-            $nav.classList.add('fixed', 'bg-linear-to-t');
+            $nav.classList.add('fixed', 'bg-linear-to-t', 'lg:bg-linear-to-b');
 
             $navlist.classList.remove('flex-col', 'text-xl');
-            $navlist.classList.add('text-black', 'gap-8');
+            $navlist.classList.add('gap-8');
 
             $container.forEach( el => el.classList.remove('hidden'));
             $container.forEach( el => el.classList.add('flex'));
         } else {
             $nav.classList.remove('fixed', 'bg-linear-to-t');
 
-            $navlist.classList.remove('text-black', 'gap-8');
+            $navlist.classList.remove('gap-8');
             $navlist.classList.add('flex-col', 'text-xl');
 
             $container.forEach( el => el.classList.remove('flex'));
