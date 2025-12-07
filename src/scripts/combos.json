@@ -14,7 +14,7 @@
     },
     {
         "title": "Combo Variado",
-        "price": "R$ 900",
+        "price": "R$ 760",
         "content": [
             {"item": "Pierna de cerdo", "weight": "10lb"},
             {"item": "Pescado de mar", "weight": "3lb"},
@@ -30,6 +30,13 @@
             {"item": "Carton de huevos", "weight": "30u"},
             {"item": "Frijoles", "weight": "1kg"},
             {"item": "Arroz", "weight": "1kg"}
+        ]
+    }, 
+    {
+        "title": "Cerdo listo para azar",
+        "price":"R$ 25",
+        "content": [
+            {"item": "Cerdo completo", "weight": "60lb"}
         ]
     }
 ]

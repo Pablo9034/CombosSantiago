@@ -5,7 +5,7 @@ const CombosSchema = z.array(
     z.object({
         title: z.string(),
         price: z.string(),
-        content: z.array(z.object({ item: z.string(), weight: z.string() }))
+        content: z.array(z.object({ item: z.string(), weight: z.string() })).optional()
     })
 );
 
