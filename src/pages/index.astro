@@ -9,11 +9,14 @@ import Navbar from '@components/Navbar.astro';
 import HeaderPicture from '@assets/header-picture.png';
 import LeavesRight from '@assets/leaves-right.svg';
 import LeavesLeft from '@assets/leaves-left.svg';
-import Down from '@assets/down.svg';
 import Certificate from '@assets/certificate.svg';
 import Meat from '@assets/meat.svg';
 import Package from '@assets/package.svg';
 import Delivery from '@assets/delivery.svg';
+import ComboSencillo from '@assets/ComboSencillo.png';
+import ComboVariado from '@assets/ComboVariado.png';
+import CerdoCompleto from '@assets/CerdoCompleto.png';
+import PiernaCerdo from '@assets/PiernaCerdo.png';
 import Tag from '@assets/tag.svg';
 import DNI from '@assets/DNI.jpg';
 import Whatsapp from '@assets/whatsapp.svg';
@@ -23,6 +26,13 @@ const services = [
     { icon: Meat, label: 'Corte Profecional' },
     { icon: Package, label: 'Empaquetado' },
     { icon: Delivery, label: 'Servicio de Entrega' },
+];
+
+const combosImages = [
+	ComboSencillo,
+	ComboVariado,
+	CerdoCompleto,
+	PiernaCerdo
 ];
 
 const combos = getCombos();
@@ -58,10 +68,14 @@ const combos = getCombos();
     		))
     	}</ul>
 
-		<div class="flex flex-col lg:flex-row items-center lg:justify-center gap-8 lg:gap-10">{
-			combos.map(({ title, price, content })=> (
-				<div class="relative w-80 pt-5 rounded-xl shadow-md shadow-red-900/80 p-2 bg-red-900 md:h-full md:grid md:grid-rows-[auto_382px_auto]">
-					<span class="absolute right-0 top-0 rotate-12 text-3xl text-yellow-300">{ price } <Tag class="absolute -right-5"/></span>
+		<div class="flex flex-col lg:flex-row flex-wrap items-center lg:items-start lg:justify-center gap-8 lg:gap-10">{
+			combos.map(({ title, price, content }, index)=> (
+				<div class="relative w-80 rounded-xl shadow-md shadow-red-900/80 bg-red-900 md:h-full">
+					<span class="absolute right-0 top-0 rotate-12 text-3xl text-yellow-400 font-[Barlow]">{ price } <Tag class="absolute -right-5"/></span>
+
+					<div class="pb-3">
+						<Picture src={ combosImages[index] } formats={[ "avif", "webp" ]} alt="Imagen de Combo" class="w-full h-44 object-cover bg-white flex justify-center rounded-t-xl" />
+					</div>
 
 					<h3 class="mb-5 font-[Barlow] text-2xl text-center">{ title }</h3>
 
@@ -78,7 +92,10 @@ const combos = getCombos();
 							: null
         				}
     				</ul>
-					<a href="#" class="w-full mt-5 py-3 bg-linear-to-b from-green-700 to-green-900 rounded-2xl font-bold active:scale-95 transition-[scale] inline-flex gap-3 justify-center">Comprar</a>
+
+					<div class="px-3 pb-2">
+					 	<a href={`https://wa.me/5548992058859?text=Me interesa ${ title }`} class="w-full mt-5 py-3 bg-linear-to-b from-green-700 to-green-900 rounded-2xl font-bold active:scale-95 transition-[scale] inline-flex gap-3 justify-center">Comprar</a>
+					</div>
 				</div>
 			))	
 		}</div>
@@ -89,7 +106,7 @@ const combos = getCombos();
 
 		<div class="lg:grid lg:grid-cols-2 lg:gap-10 max-w-4xl mx-auto lg:items-center">
             <div class="mb-10">
-                <Picture src={ DNI } alt="Imagen de un Carnet de Identidad Cubano" class="w-80 mx-auto rounded-2xl border-4 -rotate-3 shadow shadow-gray-500"/>
+                <Picture src={ DNI } formats={[ "avif", "webp" ]} alt="Imagen de un Carnet de Identidad Cubano" class="w-80 mx-auto rounded-2xl border-4 -rotate-3 shadow shadow-gray-500"/>
             </div>
     
             <div class="px-3 lg:row-start-1 lg:row-end-2">
@@ -107,8 +124,8 @@ const combos = getCombos();
     	<h2 class="pb-5 font-[Barlow] text-3xl text-center">Contactanos</h2>
     	<p class="text-center">Esperamos con ancias tu pedido.</p>
     	<ul class="my-5">
-    	    <li class="w-full inline-flex justify-center items-center gap-3"><Whatsapp class="size-8"/> <span>+55 (48) 99205-8859</span></li>
-    	    <li class="w-full inline-flex justify-center items-center gap-3"><Whatsapp class="size-8"/> <span>+55 (48) 99113-0403</span></li>
+    	    <li class="w-full inline-flex justify-center items-center gap-3"><a href="https://wa.me/5548992058859"><Whatsapp class="size-8"/> <span>+55 (48) 99205-8859</span></a></li>
+    	    <li class="w-full inline-flex justify-center items-center gap-3"><a href="https://wa.me/5548991130403"><Whatsapp class="size-8"/> <span>+55 (48) 99113-0403</span></a></li>
     	</ul>
     	<p class="text-center">Creado por Pablo A.</p>
 	</footer>

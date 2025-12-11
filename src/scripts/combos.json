@@ -1,7 +1,7 @@
 [
     {
         "title": "Combo Sencillo",
-        "price": "R$ 567",
+        "price": "R$567",
         "content": [
             {"item": "Paleta", "weight": "18lb"},
             {"item": "Cuero para chicharrones", "weight": "5lb"},
@@ -14,7 +14,7 @@
     },
     {
         "title": "Combo Variado",
-        "price": "R$ 760",
+        "price": "R$760",
         "content": [
             {"item": "Pierna de cerdo", "weight": "10lb"},
             {"item": "Pescado de mar", "weight": "3lb"},
@@ -34,9 +34,16 @@
     }, 
     {
         "title": "Cerdo listo para azar",
-        "price":"R$ 25",
+        "price": "1lb x R$25",
         "content": [
-            {"item": "Cerdo completo", "weight": "60lb"}
+            {"item": "Cerdo completo", "weight": "+60lb"}
+        ]
+    },
+    {
+        "title": "Pierna de cerdo",
+        "price": "R$715",
+        "content": [
+            {"item": "Pierna de cerdo", "weight": "39lb"}
         ]
     }
 ]
