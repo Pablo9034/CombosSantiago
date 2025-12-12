@@ -17,7 +17,6 @@
         "price": "R$760",
         "content": [
             {"item": "Pierna de cerdo", "weight": "10lb"},
-            {"item": "Pescado de mar", "weight": "3lb"},
             {"item": "Lomo", "weight": "5lb"},
             {"item": "Costilla", "weight": "3lb"},
             {"item": "Chuleta", "weight": "5lb"},
@@ -27,7 +26,6 @@
             {"item": "Manteca", "weight": "1.5lb"},
             {"item": "Lacon", "weight": "1lb"},
             {"item": "Pata de cerdo", "weight": "1lb"},
-            {"item": "Carton de huevos", "weight": "30u"},
             {"item": "Frijoles", "weight": "1kg"},
             {"item": "Arroz", "weight": "1kg"}
         ]
